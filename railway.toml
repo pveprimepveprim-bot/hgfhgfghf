@@ -1,11 +1,11 @@
-# ── Railway deployment config ────────────────────────────────────────────────
+# ── Railway deployment config (API Server) ───────────────────────────────────
 #
-# This project has TWO services. Create them both in the Railway dashboard
-# from the same GitHub repo, then set the start command for each:
+# This project has TWO services, created separately in the Railway dashboard
+# from the same GitHub repo.
 #
-#   Service 1 — API Server
-#     Build:  pnpm install && pnpm --filter @workspace/api-server run build
-#     Start:  node artifacts/api-server/dist/index.mjs
+# This railway.toml configures Service 1 (API Server) only.
+# Service 2 (Discord Bot) is configured via Dashboard → Settings → Build/Deploy
+# with its own overrides (NOT via this file):
 #
 #   Service 2 — Discord Bot
 #     Build:  pnpm install
