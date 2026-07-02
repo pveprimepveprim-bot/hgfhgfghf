@@ -18,11 +18,14 @@ export async function cmdLookup(message: Message, yearArg?: string): Promise<voi
   const channel = message.channel as TextChannel;
   await channel.sendTyping();
 
+  // Try to load all members — requires Server Members Intent enabled in Dev Portal.
+  // If it fails, continue with whatever is already in the cache.
+  let fetchedAll = true;
   try {
     await message.guild!.members.fetch();
-  } catch {
-    await message.reply('Failed to fetch member list.');
-    return;
+  } catch (err) {
+    fetchedAll = false;
+    console.error('[LOOKUP] members.fetch() failed — using cache. Enable "Server Members Intent" in the Discord Developer Portal.', err);
   }
 
   const matched: GuildMember[] = [];
@@ -34,8 +37,14 @@ export async function cmdLookup(message: Message, yearArg?: string): Promise<voi
     }
   });
 
+  const cacheNote = fetchedAll
+    ? ''
+    : '\n> **Warning:** Could not fetch the full member list — results are from cache only. Enable "Server Members Intent" in the Discord Developer Portal for complete results.';
+
   if (matched.length === 0) {
-    await message.reply(`No members found with accounts created in **${year}**.`);
+    await message.reply(
+      `No members found with accounts created in **${year}**.${cacheNote}`
+    );
     return;
   }
 
@@ -48,7 +57,7 @@ export async function cmdLookup(message: Message, yearArg?: string): Promise<voi
     return `${m.user.tag} (${m.user.id}) — joined Discord: ${date}`;
   });
 
-  // Split into chunks of 20 lines per message to avoid Discord limits
+  // Split into chunks of 20 lines per message to stay under Discord limits
   const CHUNK = 20;
   const chunks: string[][] = [];
   for (let i = 0; i < lines.length; i += CHUNK) {
@@ -56,7 +65,7 @@ export async function cmdLookup(message: Message, yearArg?: string): Promise<voi
   }
 
   await message.reply(
-    `**Accounts created in ${year}** — ${matched.length} member(s):\n\`\`\`\n${chunks[0].join('\n')}\n\`\`\``
+    `**Accounts created in ${year}** — ${matched.length} member(s):${cacheNote}\n\`\`\`\n${chunks[0].join('\n')}\n\`\`\``
   );
 
   for (let i = 1; i < chunks.length; i++) {
