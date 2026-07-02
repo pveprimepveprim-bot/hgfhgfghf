@@ -1,0 +1,31 @@
+# ── Railway deployment config ────────────────────────────────────────────────
+#
+# This project has TWO services. Create them both in the Railway dashboard
+# from the same GitHub repo, then set the start command for each:
+#
+#   Service 1 — API Server
+#     Build:  pnpm install && pnpm --filter @workspace/api-server run build
+#     Start:  node artifacts/api-server/dist/index.mjs
+#
+#   Service 2 — Discord Bot
+#     Build:  pnpm install
+#     Start:  pnpm --filter @workspace/discord-bot run start
+#
+# Required env vars for BOTH services:
+#   DISCORD_TOKEN      — your bot token
+#   APP_DOMAIN         — the Railway domain of Service 1 (e.g. my-api.up.railway.app)
+#   VERIFICATIONS_FILE — absolute path on the shared volume (e.g. /data/verifications.json)
+#
+# Mount a Railway Volume on BOTH services at the same path (e.g. /data)
+# so they share the same verifications.json file.
+#
+# Required env var for Service 1 only:
+#   PORT               — Railway sets this automatically
+
+[build]
+builder = "NIXPACKS"
+buildCommand = "pnpm install && pnpm --filter @workspace/api-server run build"
+
+[deploy]
+startCommand = "node artifacts/api-server/dist/index.mjs"
+healthcheckPath = "/api/healthz"

@@ -34,5 +34,14 @@
     "step": 3,
     "processed": true,
     "expiresAt": 1783015698591
+  },
+  "716ad79de14872e119f0eaa4a086565781c0858e9c898c89": {
+    "token": "716ad79de14872e119f0eaa4a086565781c0858e9c898c89",
+    "userId": "1419054542267613336",
+    "guildId": "1521851461762551938",
+    "createdAt": 1783015033219,
+    "step": 0,
+    "processed": false,
+    "expiresAt": 1783015933219
   }
 }

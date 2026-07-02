@@ -2,16 +2,20 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 
-// Shared file between bot and API server — both read/write here
-const DATA_FILE = '/home/runner/workspace/data/verifications.json';
+// Set VERIFICATIONS_FILE env var to the same path used by the API server.
+// On Railway: mount a shared volume on both services and point here.
+// On Replit: defaults to the workspace data folder.
+const DATA_FILE =
+  process.env.VERIFICATIONS_FILE ??
+  path.join(process.cwd(), '../../data/verifications.json');
 
 export interface VerifyEntry {
   token: string;
   userId: string;
   guildId: string;
   createdAt: number;
-  step: number;          // 0=pending, 1=step1 done, 2=step2 done, 3=complete
-  processed: boolean;    // role has been assigned
+  step: number;
+  processed: boolean;
   expiresAt: number;
 }
 
@@ -49,36 +53,18 @@ export function createToken(userId: string, guildId: string): string {
     createdAt: now,
     step: 0,
     processed: false,
-    expiresAt: now + 15 * 60 * 1000, // 15 minutes
+    expiresAt: now + 15 * 60 * 1000,
   };
   save(data);
   return token;
 }
 
 export function getToken(token: string): VerifyEntry | null {
-  const data = load();
-  return data[token] ?? null;
-}
-
-export function advanceStep(token: string, step: number): boolean {
-  const data = load();
-  if (!data[token]) return false;
-  data[token].step = step;
-  save(data);
-  return true;
-}
-
-export function completeToken(token: string): boolean {
-  const data = load();
-  if (!data[token]) return false;
-  data[token].step = 3;
-  save(data);
-  return true;
+  return load()[token] ?? null;
 }
 
 export function getPendingCompletions(): VerifyEntry[] {
-  const data = load();
-  return Object.values(data).filter((e) => e.step === 3 && !e.processed);
+  return Object.values(load()).filter((e) => e.step === 3 && !e.processed);
 }
 
 export function markProcessed(token: string): void {
@@ -89,7 +75,6 @@ export function markProcessed(token: string): void {
   }
 }
 
-// Clean up expired tokens older than 1 hour
 export function cleanup(): void {
   const data = load();
   const cutoff = Date.now() - 60 * 60 * 1000;

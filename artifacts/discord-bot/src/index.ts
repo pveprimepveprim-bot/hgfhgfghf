@@ -56,7 +56,8 @@ client.on('interactionCreate', async (interaction: Interaction) => {
   if (!btn.guild) return;
 
   const token = createToken(btn.user.id, btn.guild.id);
-  const domain = process.env.REPLIT_DEV_DOMAIN;
+  // APP_DOMAIN is used on Railway. Falls back to Replit's auto-set variable.
+  const domain = process.env.APP_DOMAIN ?? process.env.REPLIT_DEV_DOMAIN;
 
   if (!domain) {
     await btn.reply({
