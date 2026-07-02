@@ -8,7 +8,7 @@
 # with its own overrides (NOT via this file):
 #
 #   Service 2 — Discord Bot
-#     Build:  pnpm install
+#     Build:  pnpm install --no-frozen-lockfile
 #     Start:  pnpm --filter @workspace/discord-bot run start
 #
 # Required env vars for BOTH services:
@@ -24,8 +24,8 @@
 
 [build]
 builder = "NIXPACKS"
-buildCommand = "pnpm install"
+buildCommand = "pnpm install --no-frozen-lockfile && pnpm --filter @workspace/api-server run build"
 
 [deploy]
-startCommand = "pnpm --filter @workspace/discord-bot run start"
+startCommand = "node artifacts/api-server/dist/index.mjs"
 healthcheckPath = "/api/healthz"
