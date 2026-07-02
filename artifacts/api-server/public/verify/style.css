@@ -1,0 +1,183 @@
+/* ================================================================
+   VERIFICATION PAGE — STYLESHEET
+   Feel free to edit anything in here.
+   The class names match what app.js and index.html use,
+   so don't rename them unless you also update the HTML/JS.
+   ================================================================ */
+
+/* ── Reset ──────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Page background + layout ───────────────────────────────────── */
+body {
+  background-color: #111214;       /* change this to adjust background */
+  color: #dbdee1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── Screen visibility (controlled by app.js) ────────────────────── */
+.screen {
+  display: none;
+  width: 100%;
+  justify-content: center;
+}
+.screen.active {
+  display: flex;
+}
+
+/* ── Card ────────────────────────────────────────────────────────── */
+.card {
+  background: #1e1f22;             /* card background */
+  border: 1px solid #2b2d31;
+  border-radius: 12px;
+  padding: 40px 48px;
+  width: 100%;
+  max-width: 500px;                /* max card width */
+}
+.card.center {
+  text-align: center;
+}
+
+/* ── Step progress bar ───────────────────────────────────────────── */
+.step-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+.step-segment {
+  height: 4px;
+  flex: 1;
+  border-radius: 2px;
+  background: #2b2d31;             /* inactive segment colour */
+  transition: background 0.2s;
+}
+.step-segment.active {
+  background: #7983f5;             /* current step colour */
+}
+.step-segment.done {
+  background: #5865f2;             /* completed step colour */
+}
+
+/* ── Typography ──────────────────────────────────────────────────── */
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+.sub {
+  font-size: 14px;
+  color: #949ba4;
+  margin-bottom: 24px;
+}
+.loading-text {
+  color: #949ba4;
+  text-align: center;
+}
+
+/* ── Info / rules box ────────────────────────────────────────────── */
+.info-box {
+  background: #111214;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 14px;
+  color: #b5bac1;
+  margin-bottom: 24px;
+}
+
+/* ── Rules list ──────────────────────────────────────────────────── */
+.rules {
+  background: #111214;
+  border-radius: 8px;
+  padding: 16px 16px 16px 32px;
+  font-size: 14px;
+  color: #b5bac1;
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+.rules li + li {
+  margin-top: 2px;
+}
+
+/* ── Checkbox label ──────────────────────────────────────────────── */
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: #b5bac1;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.checkbox-label input[type="checkbox"] {
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  accent-color: #5865f2;           /* checkbox tick colour */
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* ── Button ──────────────────────────────────────────────────────── */
+.btn {
+  display: block;
+  width: 100%;
+  background: #5865f2;             /* button colour */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn:hover:not(:disabled) {
+  background: #4752c4;             /* button hover colour */
+}
+.btn:disabled {
+  background: #3c3f45;
+  color: #72767d;
+  cursor: not-allowed;
+}
+
+/* ── Success checkmark ───────────────────────────────────────────── */
+.checkmark {
+  width: 60px;
+  height: 60px;
+  background: #23a55a;             /* success icon colour */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #ffffff;
+  margin: 0 auto 20px;
+}
+
+/* ── Error card title ────────────────────────────────────────────── */
+#error-title {
+  color: #f04747;
+  margin-bottom: 8px;
+}
+#error-body {
+  margin-bottom: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 540px) {
+  .card {
+    padding: 28px 20px;
+  }
+}

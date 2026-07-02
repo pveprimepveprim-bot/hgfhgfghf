@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verification</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       LOADING STATE
+       Shown while the page checks whether the link is valid.
+       ============================================================ -->
+  <div id="screen-loading" class="screen active">
+    <div class="card">
+      <p class="loading-text">Checking your link...</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ERROR STATE
+       Shown when the link is invalid, expired, or already used.
+       Edit the heading/paragraph below freely.
+       ============================================================ -->
+  <div id="screen-error" class="screen">
+    <div class="card">
+      <h1 id="error-title">Invalid link</h1>
+      <p id="error-body" class="sub"></p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       STEP 1 — RULES
+       Edit the <li> items to match your server rules.
+       Do NOT remove the form or change the data-step attribute.
+       ============================================================ -->
+  <div id="screen-step1" class="screen">
+    <div class="card">
+      <div class="step-bar">
+        <div class="step-segment active"></div>
+        <div class="step-segment"></div>
+        <div class="step-segment"></div>
+      </div>
+      <h1>Server Rules</h1>
+      <p class="sub">Read and accept the rules before continuing.</p>
+
+      <ul class="rules">
+        <li>Respect all members at all times.</li>
+        <li>No harassment, hate speech, or discrimination of any kind.</li>
+        <li>No spam or self-promotion without permission.</li>
+        <li>NSFW content is restricted to designated channels only.</li>
+        <li>Follow Discord's Terms of Service at all times.</li>
+        <li>Staff decisions are final.</li>
+      </ul>
+
+      <form data-step="1">
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-rules" />
+          <span>I have read and agree to follow all server rules.</span>
+        </label>
+        <button type="submit" class="btn" id="btn-step1" disabled>Continue</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       STEP 2 — AGE CONFIRMATION
+       Edit the paragraph text freely.
+       Do NOT remove the form or change the data-step attribute.
+       ============================================================ -->
+  <div id="screen-step2" class="screen">
+    <div class="card">
+      <div class="step-bar">
+        <div class="step-segment done"></div>
+        <div class="step-segment active"></div>
+        <div class="step-segment"></div>
+      </div>
+      <h1>Age Confirmation</h1>
+      <p class="sub">This server contains adult content.</p>
+
+      <div class="info-box">
+        By continuing you confirm that you are <strong>18 years of age or older</strong>.
+        Providing false information may result in a permanent ban.
+      </div>
+
+      <form data-step="2">
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-age" />
+          <span>I confirm that I am 18 years of age or older.</span>
+        </label>
+        <button type="submit" class="btn" id="btn-step2" disabled>Continue</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       STEP 3 — FINAL CONFIRMATION
+       Edit the paragraph text freely.
+       Do NOT remove the form or change the data-step attribute.
+       ============================================================ -->
+  <div id="screen-step3" class="screen">
+    <div class="card">
+      <div class="step-bar">
+        <div class="step-segment done"></div>
+        <div class="step-segment done"></div>
+        <div class="step-segment active"></div>
+      </div>
+      <h1>Final Step</h1>
+      <p class="sub">One last confirmation before you get access.</p>
+
+      <div class="info-box">
+        By submitting, you acknowledge that you have read all rules and meet
+        the age requirement. Violations may result in removal from the server.
+      </div>
+
+      <form data-step="3">
+        <label class="checkbox-label">
+          <input type="checkbox" id="check-final" />
+          <span>I understand and accept all conditions.</span>
+        </label>
+        <button type="submit" class="btn" id="btn-step3" disabled>Verify me</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SUCCESS STATE
+       Shown after successful verification.
+       Edit the heading and paragraph freely.
+       ============================================================ -->
+  <div id="screen-success" class="screen">
+    <div class="card center">
+      <div class="checkmark">&#10003;</div>
+      <h1>You're verified.</h1>
+      <p class="sub">
+        Your role will be assigned within a few seconds.<br />
+        You can close this tab.
+      </p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

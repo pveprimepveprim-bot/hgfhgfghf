@@ -4,8 +4,35 @@
     "userId": "1419054542267613336",
     "guildId": "1521851461762551938",
     "createdAt": 1783014606116,
-    "step": 0,
-    "processed": false,
+    "step": 3,
+    "processed": true,
     "expiresAt": 1783015506116
+  },
+  "f48c2204de7bffe32463edea295357164f25a68e97f576be": {
+    "token": "f48c2204de7bffe32463edea295357164f25a68e97f576be",
+    "userId": "1419054542267613336",
+    "guildId": "1521851461762551938",
+    "createdAt": 1783014640142,
+    "step": 3,
+    "processed": true,
+    "expiresAt": 1783015540142
+  },
+  "1f8d59d9bc5bbf3a5b752aba406f72eac26a4607b3d2f6d8": {
+    "token": "1f8d59d9bc5bbf3a5b752aba406f72eac26a4607b3d2f6d8",
+    "userId": "1419054542267613336",
+    "guildId": "1521851461762551938",
+    "createdAt": 1783014785737,
+    "step": 3,
+    "processed": true,
+    "expiresAt": 1783015685737
+  },
+  "f2f02669c5db62e9d8695c540c36d20e330d2fac7ab80089": {
+    "token": "f2f02669c5db62e9d8695c540c36d20e330d2fac7ab80089",
+    "userId": "370286638435139584",
+    "guildId": "1521851461762551938",
+    "createdAt": 1783014798591,
+    "step": 3,
+    "processed": true,
+    "expiresAt": 1783015698591
   }
 }
