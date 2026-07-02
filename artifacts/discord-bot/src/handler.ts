@@ -11,6 +11,7 @@ import { cmdPurge } from './commands/purge.js';
 import { cmdSlowmode, cmdLock, cmdUnlock } from './commands/channel.js';
 import { cmdUserInfo, cmdServerInfo } from './commands/info.js';
 import { cmdRole } from './commands/role.js';
+import { cmdVerifySetup } from './commands/verifysetup.js';
 
 function isAdmin(message: Message): boolean {
   const member = message.member;
@@ -105,6 +106,10 @@ export async function handleCommand(
     case 'dm':
       if (!isAdmin(message)) return deny(message);
       return cmdDm(message, args);
+
+    case 'verifysetup':
+      if (!isAdmin(message)) return deny(message);
+      return cmdVerifySetup(message, args);
 
     case 'help':
       if (!isAdmin(message)) return deny(message);
